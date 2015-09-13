@@ -3,7 +3,7 @@ Shell script that can be user to query data from Mysql database for audit or sec
 
 # Description
 
-Script uses bash, mysql binary and sql-files (renamed here to .mysql so they don't get mixed with other vendors) to fetch metadata from mysqldatabases. Idea is to get basic information from Mysql and use that to get forward automatically.
+Script uses bash, mysql binary and sql-files (renamed here to .mysql so they don't get mixed with other database vendors) to fetch metadata from mysqldatabases. Idea is to get basic information from Mysql and use that to get forward automatically.
 
 # Howto
 
