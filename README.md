@@ -1,11 +1,12 @@
 # mysqlaudit
 Shell script that can be user to query data from Mysql database for audit or security purposes.
 
-* Description
+# Description
 
 Script uses bash, mysql binary and sql-files (renamed here to .mysql so they don't get mixed with other vendors) to fetch metadata from mysqldatabases. Idea is to get basic information from Mysql and use that to get forward automatically.
 
-* Usage
+# Howto
+
 Copy script and "sql/" folder to server that has mysql server installed.
 
 Give mysql-audit.sh script execution rights : chmod +x mysql-audit.sh.
@@ -14,14 +15,14 @@ You don't need to be logged in as root in the OS, but you need rights to call my
 
 Results go to results/ folder.
 
-* Other information
-* 
+# Other information
+ 
 Script doesn't copy actual data from the database but some (all? information should be handled carefully. 
 
 Note that especially results/Grants_users.txt contains some user data that you might want to handle extra carefully.
 
 
-* Sources
+# Sources
 
 Some of the sql file contents are taken from
 
