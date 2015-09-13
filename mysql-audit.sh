@@ -1,3 +1,5 @@
+#https://github.com/mvatanen
+
 #!/bin/bash
 
 echo "Enter your username for mysql (root recommended)";
