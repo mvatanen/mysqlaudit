@@ -1,0 +1,25 @@
+SELECT 
+  mt.host `Host`,
+  mt.user `User`,
+  CONCAT(mt.Db, '.', mt.Table_name) `Tables`,
+  REPLACE(mt.Table_priv, ',', ', ') AS `Privileges`
+ FROM
+  mysql.tables_priv mt
+ WHERE
+  mt.Table_name IN
+  (SELECT
+  DISTINCT
+    t.table_name `tables`
+  FROM
+    information_schema.tables AS t
+  WHERE
+    t.table_type IN
+    ('BASE TABLE', 'SYSTEM VIEW', 'TEMPORARY', '') OR
+    t.table_type <> 'VIEW' AND
+    t.create_options IS NOT NULL
+  )
+ ORDER BY
+  mt.Host,
+  mt.User,
+  mt.Db,
+  mt.Table_name\G;

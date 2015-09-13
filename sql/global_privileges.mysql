@@ -1,0 +1,38 @@
+SELECT
+  mu.host `Host`,
+  mu.user `User`,
+  REPLACE(RTRIM(CONCAT(
+  IF(mu.Select_priv = 'Y', 'Select ', ''),
+  IF(mu.Insert_priv = 'Y', 'Insert ', ''),
+  IF(mu.Update_priv = 'Y', 'Update ', ''),
+  IF(mu.Delete_priv = 'Y', 'Delete ', ''),
+  IF(mu.Create_priv = 'Y', 'Create ', ''),
+  IF(mu.Drop_priv = 'Y', 'Drop ', ''),
+  IF(mu.Reload_priv = 'Y', 'Reload ', ''),
+  IF(mu.Shutdown_priv = 'Y', 'Shutdown ', ''),
+  IF(mu.Process_priv = 'Y', 'Process ', ''),
+  IF(mu.File_priv = 'Y', 'File ', ''),
+  IF(mu.Grant_priv = 'Y', 'Grant ', ''),
+  IF(mu.References_priv = 'Y', 'References ', ''),
+  IF(mu.Index_priv = 'Y', 'Index ', ''),
+  IF(mu.Alter_priv = 'Y', 'Alter ', ''),
+  IF(mu.Show_db_priv = 'Y', 'Show_db ', ''),
+  IF(mu.Super_priv = 'Y', 'Super ', ''),
+  IF(mu.Create_tmp_table_priv = 'Y', 'Create_tmp_table ', ''),
+  IF(mu.Lock_tables_priv = 'Y', 'Lock_tables ', ''),
+  IF(mu.Execute_priv = 'Y', 'Execute ', ''),
+  IF(mu.Repl_slave_priv = 'Y', 'Repl_slave ', ''),
+  IF(mu.Repl_client_priv = 'Y', 'Repl_client ', ''),
+  IF(mu.Create_view_priv = 'Y', 'Create_view ', ''),
+  IF(mu.Show_view_priv = 'Y', 'Show_view ', ''),
+  IF(mu.Create_routine_priv = 'Y', 'Create_routine ', ''),
+  IF(mu.Alter_routine_priv = 'Y', 'Alter_routine ', ''),
+  IF(mu.Create_user_priv = 'Y', 'Create_user ', ''),
+  IF(mu.Event_priv = 'Y', 'Event ', ''),
+  IF(mu.Trigger_priv = 'Y', 'Trigger ', '')
+  )), ' ', ', ') AS `Privileges`
+ FROM
+  mysql.user mu
+ ORDER BY
+  mu.Host,
+  mu.User\G 

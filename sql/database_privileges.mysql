@@ -1,0 +1,31 @@
+SELECT 
+  md.host `Host`,
+  md.user `User`,
+  md.db `Database`,
+  REPLACE(RTRIM(CONCAT(
+  IF(md.Select_priv = 'Y', 'Select ', ''),
+  IF(md.Insert_priv = 'Y', 'Insert ', ''),
+  IF(md.Update_priv = 'Y', 'Update ', ''),
+  IF(md.Delete_priv = 'Y', 'Delete ', ''),
+  IF(md.Create_priv = 'Y', 'Create ', ''),
+  IF(md.Drop_priv = 'Y', 'Drop ', ''),
+  IF(md.Grant_priv = 'Y', 'Grant ', ''),
+  IF(md.References_priv = 'Y', 'References ', ''),
+  IF(md.Index_priv = 'Y', 'Index ', ''),
+  IF(md.Alter_priv = 'Y', 'Alter ', ''),
+  IF(md.Create_tmp_table_priv = 'Y', 'Create_tmp_table ', ''),
+  IF(md.Lock_tables_priv = 'Y', 'Lock_tables ', ''),
+  IF(md.Create_view_priv = 'Y', 'Create_view ', ''),
+  IF(md.Show_view_priv = 'Y', 'Show_view ', ''),
+  IF(md.Create_routine_priv = 'Y', 'Create_routine ', ''),
+  IF(md.Alter_routine_priv = 'Y', 'Alter_routine ', ''),
+  IF(md.Execute_priv = 'Y', 'Execute ', ''),
+  IF(md.Event_priv = 'Y', 'Event ', ''),
+  IF(md.Trigger_priv = 'Y', 'Trigger ', '')
+  )), ' ', ', ') AS `Privileges`
+ FROM
+  mysql.db md
+ ORDER BY
+  md.Host,
+  md.User,
+  md.Db\G

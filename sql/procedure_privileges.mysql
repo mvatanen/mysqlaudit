@@ -1,0 +1,14 @@
+SELECT
+  mp.host `Host`,
+  mp.user `User`,
+  CONCAT(mp.Db, '.', mp.Routine_name) `Procedures`,
+  REPLACE(mp.Proc_priv, ',', ', ') AS `Privileges`
+ FROM
+  mysql.procs_priv mp
+ WHERE
+  mp.Routine_type = 'PROCEDURE'
+ ORDER BY
+  mp.Host,
+  mp.User,
+  mp.Db,
+  mp.Routine_name\G;

@@ -1,0 +1,21 @@
+SELECT
+  mvc.host `Host`,
+  mvc.user `User`,
+  CONCAT(mvc.Db, '.', mvc.Table_name, '.', mvc.Column_name) `Views Columns`,
+  REPLACE(mvc.Column_priv, ',', ', ') AS `Privileges`
+ FROM
+  mysql.columns_priv mvc
+ WHERE
+  mvc.Table_name IN
+  (SELECT
+  DISTINCT
+    v.table_name `views`
+  FROM
+    information_schema.views AS v
+  )
+ ORDER BY
+  mvc.Host,
+  mvc.User,
+  mvc.Db,
+  mvc.Table_name,
+  mvc.Column_name\G;

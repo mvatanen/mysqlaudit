@@ -1,0 +1,20 @@
+SELECT 
+  mv.host `Host`,
+  mv.user `User`,
+  CONCAT(mv.Db, '.', mv.Table_name) `Views`,
+  REPLACE(mv.Table_priv, ',', ', ') AS `Privileges`
+ FROM
+  mysql.tables_priv mv
+ WHERE
+  mv.Table_name IN
+  (SELECT
+  DISTINCT
+    v.table_name `views`
+  FROM
+    information_schema.views AS v
+  )
+ ORDER BY
+  mv.Host,
+  mv.User,
+  mv.Db,
+  mv.Table_name\G;
